@@ -1,34 +1,35 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: #111111;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 .rules {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-    color: white;
-    font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  color: white;
+  font-size: 30px;
 }
 
 .score {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-    color: white;
-    font-size: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  color: white;
+  font-size: 100px;
 }
