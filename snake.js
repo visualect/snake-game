@@ -27,32 +27,43 @@ function drawGame() {
   ctx.fillStyle = '#111111';
   ctx.fillRect(0, 0, board.width, board.height)
 
+
+  // food 
+  ctx.fillStyle = '#FF5252';
+  ctx.fillRect(foodX, foodY, blockSize, blockSize);
+  if (snakeX === foodX && snakeY === foodY) {
+    score.textContent = ++score.textContent;
+    snakeBody.push([foodX, foodY])
+    placeFood();
+  };
+  // food overlapping each other
+  for (let i = snakeBody.length - 1; i > 0; i--) {
+    snakeBody[i] = snakeBody[i - 1];
+  }
+  // if snakeBody isn't empty make first element of array a head of the snake
+  if (snakeBody.length) {
+    snakeBody[0] = [snakeX, snakeY];
+  }
+
   // snake
   snakeX += velocityX * blockSize;
   snakeY += velocityY * blockSize;
   ctx.fillStyle = '#2C8943';
   ctx.fillRect(snakeX, snakeY, blockSize, blockSize);
-
-  // food 
-  ctx.fillStyle = '#FF5252';
-  ctx.fillRect(foodX, foodY, blockSize, blockSize);
-
-  // scenarios
-  if (snakeX === foodX && snakeY === foodY) {
-    placeFood();
-    score.textContent = ++score.textContent;
-  };
-
-  if (snakeX > board.width || snakeX < 0 || snakeY > board.height || snakeY < 0) {
-    restartGame();
+  for (const snakeBlock of snakeBody) {
+    ctx.fillRect(snakeBlock[0], snakeBlock[1], blockSize, blockSize)
   }
 
+  // game over scenarios
+  if (snakeX > board.width || snakeX < 0 || snakeY > board.height || snakeY < 0) restartGame();
+
+  for (const snakeBlock of snakeBody) {
+    if (snakeX === snakeBlock[0] && snakeY === snakeBlock[1]) restartGame();
+  }
 
   // restart
   document.addEventListener('keydown', event => {
-    if (event.key === 'r') {
-      restartGame();
-    }
+    if (event.key === 'r') restartGame()
   })
 }
 
@@ -83,6 +94,7 @@ function restartGame() {
   velocityY = 0;
   snakeX = 2 * blockSize;
   snakeY = 2 * blockSize;
+  snakeBody = [];
   placeFood();
   game = setInterval(drawGame, 40)
   score.textContent = 0;
