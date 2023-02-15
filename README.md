@@ -1,1 +1,1 @@
-a snake game in pure javascript using canvas
+Snake game in pure javascript using canvas
