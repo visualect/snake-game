@@ -20,7 +20,8 @@ let snakeY = 2 * blockSize;
 let foodX = Math.floor(Math.random() * COLS) * blockSize;
 let foodY = Math.floor(Math.random() * ROWS) * blockSize;
 
-let snakeBody = [];
+const defaultBody = [[snakeX - blockSize, snakeY], [snakeX - blockSize * 2, snakeY], [snakeX - blockSize * 3, snakeY]]
+let snakeBody = [...defaultBody];
 
 function drawGame() {
   // board
@@ -94,7 +95,7 @@ function restartGame() {
   velocityY = 0;
   snakeX = 2 * blockSize;
   snakeY = 2 * blockSize;
-  snakeBody = [];
+  snakeBody = [...defaultBody];
   placeFood();
   game = setInterval(drawGame, 40)
   score.textContent = 0;
